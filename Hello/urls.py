@@ -16,15 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from Home import views
+
 admin.site.site_header = "NoteHeaven Admin"
 admin.site.site_title = "NoteHeaven Admin Portal"
-admin.site.index_title = "Welcome to NoteHeaven "
+admin.site.index_title = "Welcome to NoteHeaven"
 
 urlpatterns = [
-    path('admin/',admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', views.index, name='Home'),
-     path('about', views.about, name='about'),
-      path('services', views.services, name='services'),
-        path('contact', views.contact, name='contact')
+    path('about', views.about, name='about'),
+    path('services', views.services, name='services'),
+    path('contact', views.contact, name='contact'),
 ]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
