@@ -1,0 +1,1 @@
+web: gunicorn hote_heaven.wsgi:application

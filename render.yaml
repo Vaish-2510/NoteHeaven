@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: hote-heaven
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn hote_heaven.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: your-secret-key
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        value: hote-heaven.onrender.com
